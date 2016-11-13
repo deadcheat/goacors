@@ -1,4 +1,4 @@
-package cors
+package goacors
 
 import (
 	"net/http"
@@ -24,7 +24,7 @@ type (
 
 var (
 	// DefaultGoaCORSConfig is the default CORS middleware config.
-	DefaultGoaCORSConfig = GoaCORSConfig{
+	DefaultGoaCORSConfig = &GoaCORSConfig{
 		Skipper:      defaultSkipper,
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{GET, HEAD, PUT, PATCH, POST, DELETE},
@@ -79,7 +79,7 @@ func GoaCORS(service *goa.Service) goa.Middleware {
 }
 
 // GoaCORSWithConfig Configを用いてCORSヘッダチェックを行う
-func GoaCORSWithConfig(service *goa.Service, conf GoaCORSConfig) goa.Middleware {
+func GoaCORSWithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
 	if conf.Skipper == nil {
 		conf.Skipper = DefaultGoaCORSConfig.Skipper
 	}

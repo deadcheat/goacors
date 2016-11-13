@@ -1,4 +1,4 @@
-package cors
+package goacors
 
 import (
 	"net/http"
