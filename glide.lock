@@ -1,0 +1,20 @@
+hash: a06142520a8a648707e043c7a4a2a733d65bd3798fccca624bb70513f287f251
+updated: 2016-11-14T01:06:45.944434913+09:00
+imports:
+- name: github.com/armon/go-metrics
+  version: 97c69685293dce4c0a2d0b19535179bbc976e4d2
+- name: github.com/dimfeld/httppath
+  version: c8e499c3ef3c3e272ed8bdcc1ccf39f73c88debc
+- name: github.com/dimfeld/httptreemux
+  version: 5cb0ec25af2dd6a7d3718b5aa05dc48e192473bc
+- name: github.com/goadesign/goa
+  version: 5a33ca09d4a93dac7af8d9ef5f9e4d35074dcd9b
+  subpackages:
+  - uuid
+- name: github.com/satori/go.uuid
+  version: b061729afc07e77a8aa4fad0a2fd840958f1942a
+- name: golang.org/x/net
+  version: 0e2717dc3cc05907dc23096ef3a9086ea93f567f
+  subpackages:
+  - context
+devImports: []
