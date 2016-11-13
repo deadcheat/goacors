@@ -8,7 +8,7 @@ a cors-header middleware for goa(https://github.com/goadesign/goa)
 1. first, import this from glide, or `go get github.com/deadcheat/goacors`
 2. write your main.go generated automatically from goagen.
 	```
-	service.Use(cors.GoaCORSWithConfig(service, cors.DefaultGoaCORSConfig))
+	service.Use(goacors.GoaCORSWithConfig(service, &DefaultGoaCORSConfig))
 	```
 	or
 	```
