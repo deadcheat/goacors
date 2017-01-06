@@ -31,7 +31,7 @@ var _ = Describe("CORS-Middleware for goa", func() {
 				newCtx = ctx
 				return service.Send(ctx, http.StatusOK, "ok")
 			}
-			t := GoaCORSWithConfig(service, &GoaCORSConfig{
+			t := WithConfig(service, &GoaCORSConfig{
 				AllowCredentials: true,
 			})(h)
 			err := t(ctx, rw, req)
@@ -52,7 +52,7 @@ var _ = Describe("CORS-Middleware for goa", func() {
 				newCtx = ctx
 				return service.Send(ctx, http.StatusOK, "ok")
 			}
-			t := GoaCORSWithConfig(service, &GoaCORSConfig{
+			t := WithConfig(service, &GoaCORSConfig{
 				AllowCredentials: true,
 			})(h)
 			err := t(ctx, rw, req)
@@ -73,7 +73,7 @@ var _ = Describe("CORS-Middleware for goa", func() {
 				newCtx = ctx
 				return service.Send(ctx, http.StatusOK, "ok")
 			}
-			t := GoaCORSWithConfig(service, &GoaCORSConfig{
+			t := WithConfig(service, &GoaCORSConfig{
 				AllowOrigins:     []string{"http://example.com"},
 				AllowCredentials: true,
 			})(h)
@@ -95,7 +95,7 @@ var _ = Describe("CORS-Middleware for goa", func() {
 				newCtx = ctx
 				return service.Send(ctx, http.StatusOK, "ok")
 			}
-			t := GoaCORSWithConfig(service, &GoaCORSConfig{
+			t := WithConfig(service, &GoaCORSConfig{
 				AllowOrigins:     []string{"*"},
 				AllowCredentials: true,
 			})(h)
@@ -118,7 +118,7 @@ var _ = Describe("CORS-Middleware for goa", func() {
 				newCtx = ctx
 				return service.Send(ctx, http.StatusOK, "ok")
 			}
-			t := GoaCORSWithConfig(service, &GoaCORSConfig{
+			t := WithConfig(service, &GoaCORSConfig{
 				AllowOrigins:     []string{fixedOrigin},
 				AllowCredentials: true,
 			})(h)
@@ -141,7 +141,7 @@ var _ = Describe("CORS-Middleware for goa", func() {
 				newCtx = ctx
 				return service.Send(ctx, http.StatusOK, "ok")
 			}
-			testee := GoaCORSWithConfig(service, &GoaCORSConfig{
+			testee := WithConfig(service, &GoaCORSConfig{
 				AllowCredentials: true,
 				AllowOrigins:     []string{"localhost"},
 				MaxAge:           3600,
@@ -167,7 +167,7 @@ var _ = Describe("CORS-Middleware for goa", func() {
 				newCtx = ctx
 				return service.Send(ctx, http.StatusOK, "ok")
 			}
-			testee := GoaCORSWithConfig(service, &GoaCORSConfig{
+			testee := WithConfig(service, &GoaCORSConfig{
 				AllowCredentials: true,
 				AllowOrigins:     []string{"example.com"},
 			})(h)

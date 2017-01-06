@@ -24,7 +24,7 @@ type (
 
 var (
 	// DefaultGoaCORSConfig is the default CORS middleware config.
-	DefaultGoaCORSConfig = &GoaCORSConfig{
+	DefaultGoaCORSConfig = GoaCORSConfig{
 		Skipper:      defaultSkipper,
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{GET, HEAD, PUT, PATCH, POST, DELETE},
@@ -73,13 +73,16 @@ const (
 	HeaderContentType = "Content-Type"
 )
 
-// GoaCORS serviceとDefaultConfigを利用してCORSヘッダチェックを行う
-func GoaCORS(service *goa.Service) goa.Middleware {
-	return GoaCORSWithConfig(service, DefaultGoaCORSConfig)
+// New serviceとDefaultConfigを利用してCORSヘッダチェックを行う
+func New(service *goa.Service) goa.Middleware {
+	return WithConfig(service, &DefaultGoaCORSConfig)
 }
 
-// GoaCORSWithConfig Configを用いてCORSヘッダチェックを行う
-func GoaCORSWithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
+// WithConfig Configを用いてCORSヘッダチェックを行う
+func WithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
+	if conf == nil {
+		conf = &DefaultGoaCORSConfig
+	}
 	if conf.Skipper == nil {
 		conf.Skipper = DefaultGoaCORSConfig.Skipper
 	}
