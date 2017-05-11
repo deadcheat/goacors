@@ -1,12 +1,10 @@
 package goacors_test
 
 import (
+	"context"
 	"net/http"
 
 	. "github.com/deadcheat/goacors"
-
-	"golang.org/x/net/context"
-
 	"github.com/goadesign/goa"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

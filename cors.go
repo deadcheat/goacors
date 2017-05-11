@@ -1,12 +1,12 @@
 package goacors
 
 import (
+	"context"
 	"net/http"
 	"strconv"
 	"strings"
 
 	"github.com/goadesign/goa"
-	"golang.org/x/net/context"
 )
 
 type (
