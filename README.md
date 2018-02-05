@@ -9,7 +9,7 @@ a cors-header middleware for goa(https://github.com/goadesign/goa)
 2. write your main.go generated automatically from goagen.
 
 	```
-	service.Use(goacors.WithConfig(service, &DefaultGoaCORSConfig))
+	service.Use(goacors.WithConfig(service, &goacors.DefaultGoaCORSConfig))
 	```
 
 		or
