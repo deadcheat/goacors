@@ -1,10 +1,11 @@
 package goacors
 
 import (
-	"context"
 	"net/http"
 	"strconv"
 	"strings"
+
+	"golang.org/x/net/context"
 
 	"github.com/goadesign/goa"
 )
@@ -98,14 +99,11 @@ func WithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
 	maxAge := strconv.Itoa(conf.MaxAge)
 	return func(h goa.Handler) goa.Handler {
 		return func(c context.Context, rw http.ResponseWriter, req *http.Request) error {
-
 			// Skipper
 			if conf.Skipper(c, rw, req) {
 				return h(c, rw, req)
 			}
 			origin := req.Header.Get(HeaderOrigin)
-			_, hasOrigin := req.Header[HeaderOrigin]
-			// isOriginEmpty := (origin == "")
 			// Check allowed origins
 			allowedOrigin := ""
 			for _, o := range conf.AllowOrigins {
@@ -118,9 +116,6 @@ func WithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
 			// Simple request
 			if req.Method != OPTIONS {
 				rw.Header().Add(HeaderVary, HeaderOrigin)
-				if !hasOrigin || allowedOrigin == "" {
-					return h(c, rw, req)
-				}
 				rw.Header().Set(HeaderAccessControlAllowOrigin, allowedOrigin)
 				if conf.AllowCredentials {
 					rw.Header().Set(HeaderAccessControlAllowCredentials, "true")
@@ -134,10 +129,6 @@ func WithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
 			rw.Header().Add(HeaderVary, HeaderOrigin)
 			rw.Header().Add(HeaderVary, HeaderAccessControlRequestMethod)
 			rw.Header().Add(HeaderVary, HeaderAccessControlRequestHeaders)
-			if !hasOrigin || allowedOrigin == "" {
-				return h(c, rw, req)
-			}
-
 			rw.Header().Set(HeaderAccessControlAllowOrigin, allowedOrigin)
 			rw.Header().Set(HeaderAccessControlAllowMethods, allowMethods)
 			if conf.AllowCredentials {

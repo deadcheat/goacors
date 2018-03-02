@@ -1,6 +1,0 @@
-package: github.com/deadcheat/goacors
-import:
-- package: github.com/goadesign/goa
-- package: golang.org/x/net
-  subpackages:
-  - context
