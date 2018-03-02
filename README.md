@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/deadcheat/goacors.svg?branch=master)](https://travis-ci.org/deadcheat/goacors)
-[![Coverage Status](https://coveralls.io/repos/github/deadcheat/goacors/badge.svg?branch=master)](https://coveralls.io/github/deadcheat/goacors?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/deadcheat/goacors/badge.svg?branch=master&service=github)](https://coveralls.io/github/deadcheat/goacors?branch=master) [![GoDoc](https://godoc.org/github.com/deadcheat/goacors?status.svg)](https://godoc.org/github.com/deadcheat/goacors)  
 
 # goacors
 a cors-header middleware for goa(https://github.com/goadesign/goa)
