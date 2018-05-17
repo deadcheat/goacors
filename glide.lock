@@ -1,0 +1,86 @@
+hash: dee0bfa195db58110f5e372354d37f47f163b4a2324a738ed6f473430887968a
+updated: 2018-05-17T16:55:42.472659+09:00
+imports:
+- name: github.com/armon/go-metrics
+  version: 783273d703149aaeb9897cf58613d5af48861c25
+- name: github.com/dimfeld/httptreemux
+  version: 7f532489e7739b3d49df5c602bf63549881fe753
+- name: github.com/goadesign/goa
+  version: fc29b77a218fb9e190849c81911ed12d25e771de
+  subpackages:
+  - uuid
+- name: github.com/hashicorp/go-immutable-radix
+  version: 7f3cd4390caab3250a57f30efdb2a65dd7649ecf
+- name: github.com/hashicorp/golang-lru
+  version: 0fb14efe8c47ae851c0034ed7a448854d3d34cf3
+  subpackages:
+  - simplelru
+- name: github.com/satori/go.uuid
+  version: 36e9d2ebbde5e3f13ab2e25625fd453271d6522e
+testImports:
+- name: github.com/onsi/ginkgo
+  version: fa5fabab2a1bfbd924faf4c067d07ae414e2aedf
+  subpackages:
+  - config
+  - internal/codelocation
+  - internal/containernode
+  - internal/failer
+  - internal/leafnodes
+  - internal/remote
+  - internal/spec
+  - internal/spec_iterator
+  - internal/specrunner
+  - internal/suite
+  - internal/testingtproxy
+  - internal/writer
+  - reporters
+  - reporters/stenographer
+  - reporters/stenographer/support/go-colorable
+  - reporters/stenographer/support/go-isatty
+  - types
+- name: github.com/onsi/gomega
+  version: 62bff4df71bdbc266561a0caee19f0594b17c240
+  subpackages:
+  - format
+  - internal/assertion
+  - internal/asyncassertion
+  - internal/oraclematcher
+  - internal/testingtsupport
+  - matchers
+  - matchers/support/goraph/bipartitegraph
+  - matchers/support/goraph/edge
+  - matchers/support/goraph/node
+  - matchers/support/goraph/util
+  - types
+- name: golang.org/x/net
+  version: 6078986fec03a1dcc236c34816c71b0e05018fda
+  subpackages:
+  - html
+  - html/atom
+  - html/charset
+- name: golang.org/x/sys
+  version: 91ee8cde435411ca3f1cd365e8f20131aed4d0a1
+  subpackages:
+  - unix
+- name: golang.org/x/text
+  version: ab48842968a66deafa354805a8b031924668e059
+  subpackages:
+  - encoding
+  - encoding/charmap
+  - encoding/htmlindex
+  - encoding/internal
+  - encoding/internal/identifier
+  - encoding/japanese
+  - encoding/korean
+  - encoding/simplifiedchinese
+  - encoding/traditionalchinese
+  - encoding/unicode
+  - internal/language
+  - internal/language/compact
+  - internal/tag
+  - internal/utf8internal
+  - language
+  - runes
+  - transform
+- name: gopkg.in/yaml.v2
+  version: 86f5ed62f8a0ee96bd888d2efdfd6d4fb100a4eb

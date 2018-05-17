@@ -4,8 +4,9 @@ import (
 	"net/http"
 	"testing"
 
+	"context"
+
 	"github.com/deadcheat/goacors"
-	"golang.org/x/net/context"
 )
 
 func TestNew(t *testing.T) {
@@ -13,10 +14,7 @@ func TestNew(t *testing.T) {
 	req, _ := http.NewRequest(http.MethodGet, "/", nil)
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
-
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.New(service)(h)

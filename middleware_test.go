@@ -5,7 +5,7 @@ import (
 	"net/url"
 
 	"github.com/goadesign/goa"
-	"golang.org/x/net/context"
+	"context"
 )
 
 // Helper that sets up a "working" service
