@@ -1,5 +1,5 @@
 hash: dee0bfa195db58110f5e372354d37f47f163b4a2324a738ed6f473430887968a
-updated: 2018-05-17T16:55:42.472659+09:00
+updated: 2018-05-17T19:08:14.479946+09:00
 imports:
 - name: github.com/armon/go-metrics
   version: 783273d703149aaeb9897cf58613d5af48861c25
@@ -53,17 +53,17 @@ testImports:
   - matchers/support/goraph/util
   - types
 - name: golang.org/x/net
-  version: 6078986fec03a1dcc236c34816c71b0e05018fda
+  version: 2491c5de3490fced2f6cff376127c667efeed857
   subpackages:
   - html
   - html/atom
   - html/charset
 - name: golang.org/x/sys
-  version: 91ee8cde435411ca3f1cd365e8f20131aed4d0a1
+  version: 7c87d13f8e835d2fb3a70a2912c811ed0c1d241b
   subpackages:
   - unix
 - name: golang.org/x/text
-  version: ab48842968a66deafa354805a8b031924668e059
+  version: 5c1cf69b5978e5a34c5f9ba09a83e56acc4b7877
   subpackages:
   - encoding
   - encoding/charmap
@@ -83,4 +83,4 @@ testImports:
   - runes
   - transform
 - name: gopkg.in/yaml.v2
-  version: 86f5ed62f8a0ee96bd888d2efdfd6d4fb100a4eb
+  version: 5420a8b6744d3b0345ab293f6fcba19c978f1183
