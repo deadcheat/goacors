@@ -1,20 +1,7 @@
 package goacors
 
-const (
-	// DELETE HTTP Methods
-	DELETE = "DELETE"
-	// GET HTTP Methods
-	GET = "GET"
-	// HEAD HTTP Methods
-	HEAD = "HEAD"
-	// OPTIONS HTTP Methods
-	OPTIONS = "OPTIONS"
-	// PATCH HTTP Methods
-	PATCH = "PATCH"
-	// POST HTTP Methods
-	POST = "POST"
-	// PUT HTTP Methods
-	PUT = "PUT"
+import (
+	"net/http"
 )
 
 const (
@@ -41,3 +28,31 @@ const (
 	// HeaderContentType "Content-Type"
 	HeaderContentType = "Content-Type"
 )
+
+// DomainStrategy defined identify how handle (judge match with origin or not) domain
+type DomainStrategy int
+
+const (
+	// AllowStrict strict mode (completely same origin or wild card or null)
+	AllowStrict DomainStrategy = iota
+	// AllowIntermediateMatch intermediate-match (such as subdomain like '*.example.com')
+	AllowIntermediateMatch
+)
+
+// GoaCORSConfig CORSチェック用のConfig
+type GoaCORSConfig struct {
+	Skipper          Skipper
+	AllowOrigins     []string
+	AllowMethods     []string
+	AllowHeaders     []string
+	AllowCredentials bool
+	ExposeHeaders    []string
+	MaxAge           int
+}
+
+// DefaultGoaCORSConfig is the default CORS middleware config.
+var DefaultGoaCORSConfig = GoaCORSConfig{
+	Skipper:      defaultSkipper,
+	AllowOrigins: []string{"*"},
+	AllowMethods: []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPatch, http.MethodPost, http.MethodDelete},
+}

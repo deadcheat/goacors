@@ -4,24 +4,6 @@ import (
 	"github.com/goadesign/goa"
 )
 
-// GoaCORSConfig CORSチェック用のConfig
-type GoaCORSConfig struct {
-	Skipper          Skipper
-	AllowOrigins     []string
-	AllowMethods     []string
-	AllowHeaders     []string
-	AllowCredentials bool
-	ExposeHeaders    []string
-	MaxAge           int
-}
-
-// DefaultGoaCORSConfig is the default CORS middleware config.
-var DefaultGoaCORSConfig = GoaCORSConfig{
-	Skipper:      defaultSkipper,
-	AllowOrigins: []string{"*"},
-	AllowMethods: []string{GET, HEAD, PUT, PATCH, POST, DELETE},
-}
-
 // New return middleware implements checking cors with default config
 func New(service *goa.Service) goa.Middleware {
 	return WithConfig(service, &DefaultGoaCORSConfig)
@@ -41,6 +23,6 @@ func WithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
 	if len(conf.AllowMethods) == 0 {
 		conf.AllowMethods = DefaultGoaCORSConfig.AllowMethods
 	}
-	b := NewDefaultHandlerBuilder(service, conf)
-	return b.Build
+	factory := NewFactory(AllowStrict)
+	return factory.Produce(service, conf)
 }
