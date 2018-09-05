@@ -6,12 +6,10 @@ import (
 	"context"
 )
 
-type (
-	// Skipper スキップ条件を記述するためのもの
-	Skipper func(c context.Context, rw http.ResponseWriter, req *http.Request) bool
-)
+// Skipper スキップ条件を記述するためのもの
+type Skipper func(c context.Context, rw http.ResponseWriter, req *http.Request) bool
 
-// defaultSkipper 常にFalseを返すSkipper
+// defaultSkipper skipper always return false, check cors every time
 func defaultSkipper(c context.Context, rw http.ResponseWriter, req *http.Request) bool {
 	return false
 }

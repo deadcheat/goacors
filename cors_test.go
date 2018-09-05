@@ -34,10 +34,8 @@ func TestWithNilConfig(t *testing.T) {
 	req, _ := http.NewRequest(http.MethodGet, "/", nil)
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, nil)(h)
@@ -57,10 +55,8 @@ func TestNeitherOriginHeaderAndAllowOriginGiven(t *testing.T) {
 	req, _ := http.NewRequest(http.MethodGet, "/", nil)
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
@@ -83,10 +79,8 @@ func TestEmptyOriginHeader(t *testing.T) {
 	req.Header.Set(goacors.HeaderOrigin, "")
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
@@ -109,10 +103,8 @@ func TestOriginAllowsWildcard(t *testing.T) {
 	req.Header.Set(goacors.HeaderOrigin, "http://someorigin.com")
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
@@ -135,10 +127,8 @@ func TestOrigIsNotValid(t *testing.T) {
 	req.Header.Set(goacors.HeaderOrigin, "http://someorigin.com")
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
@@ -163,10 +153,8 @@ func TestOriginAllowsFixedOrigin(t *testing.T) {
 	req.Header.Set(goacors.HeaderOrigin, fixedOrigin)
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
@@ -198,10 +186,8 @@ func TestPreflightRequet(t *testing.T) {
 	req.Header.Set(goacors.HeaderContentType, "application/json")
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
@@ -242,10 +228,8 @@ func TestNotGivenAllowHeaderOnRequest(t *testing.T) {
 	req.Header.Set(goacors.HeaderOrigin, "localhost")
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
@@ -269,10 +253,8 @@ func TestExecuteWithSkipper(t *testing.T) {
 	req.Header.Set(goacors.HeaderOrigin, "mismatchedhost")
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
@@ -301,10 +283,8 @@ func TestRequestGetWithOrigin(t *testing.T) {
 	req.Header.Set(goacors.HeaderContentType, "application/json")
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
@@ -328,10 +308,8 @@ func TestAddedAllowOrigHeader(t *testing.T) {
 	req.Header.Set(goacors.HeaderOrigin, "http://someorigin.com")
 	rw := newTestResponseWriter()
 	ctx := newContext(service, rw, req, nil)
-	var newCtx context.Context
 
 	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
-		newCtx = ctx
 		return service.Send(ctx, http.StatusOK, "ok")
 	}
 	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
