@@ -23,6 +23,9 @@ func WithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
 	if len(conf.AllowMethods) == 0 {
 		conf.AllowMethods = DefaultGoaCORSConfig.AllowMethods
 	}
-	factory := NewFactory(AllowStrict)
+	if conf.DomainStrategy != AllowIntermediateMatch {
+		conf.DomainStrategy = AllowStrict
+	}
+	factory := NewFactory()
 	return factory.Produce(service, conf)
 }

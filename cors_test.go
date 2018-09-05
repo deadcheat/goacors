@@ -115,8 +115,8 @@ func TestOriginAllowsWildcard(t *testing.T) {
 		t.Error("it should not return any error but ", err)
 		t.Fail()
 	}
-	if rw.Header().Get(goacors.HeaderAccessControlAllowOrigin) != "*" {
-		t.Error("allow origin should be empty")
+	if rw.Header().Get(goacors.HeaderAccessControlAllowOrigin) != req.Header.Get(goacors.HeaderOrigin) {
+		t.Errorf("allow origin should be %s but %s", req.Header.Get(goacors.HeaderOrigin), rw.Header().Get(goacors.HeaderAccessControlAllowOrigin))
 		t.Fail()
 	}
 }

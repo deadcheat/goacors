@@ -41,7 +41,8 @@ const (
 
 // GoaCORSConfig CORSチェック用のConfig
 type GoaCORSConfig struct {
-	Skipper          Skipper
+	Skipper
+	DomainStrategy
 	AllowOrigins     []string
 	AllowMethods     []string
 	AllowHeaders     []string
@@ -52,7 +53,8 @@ type GoaCORSConfig struct {
 
 // DefaultGoaCORSConfig is the default CORS middleware config.
 var DefaultGoaCORSConfig = GoaCORSConfig{
-	Skipper:      defaultSkipper,
-	AllowOrigins: []string{"*"},
-	AllowMethods: []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPatch, http.MethodPost, http.MethodDelete},
+	Skipper:        defaultSkipper,
+	AllowOrigins:   []string{"*"},
+	AllowMethods:   []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPatch, http.MethodPost, http.MethodDelete},
+	DomainStrategy: AllowStrict,
 }

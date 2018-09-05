@@ -18,16 +18,18 @@ type CorsHandler struct {
 	h             goa.Handler
 	s             *goa.Service
 	c             *GoaCORSConfig
+	om            OriginMatcher
 	allowMethods  string
 	allowHeaders  string
 	exposeHeaders string
 	maxAge        string
 }
 
-func newCorsHandler(service *goa.Service, conf *GoaCORSConfig) Handler {
+func newCorsHandler(service *goa.Service, config *GoaCORSConfig, mb MatcherBuilder) Handler {
 	return &CorsHandler{
-		s: service,
-		c: conf,
+		s:  service,
+		c:  config,
+		om: mb(config),
 	}
 }
 
@@ -38,19 +40,13 @@ func (h *CorsHandler) handle(c context.Context, rw http.ResponseWriter, req *htt
 	}
 	origin := req.Header.Get(HeaderOrigin)
 	// Check allowed origins
-	allowedOrigin := ""
-	for _, o := range h.c.AllowOrigins {
-		if o == "*" || o == origin {
-			allowedOrigin = o
-			break
-		}
-	}
+	allowedOrigin, _ := h.om.FindMatchedOrigin(h.c.AllowOrigins, origin)
 
 	// Simple request
 	if req.Method == http.MethodGet || req.Method == http.MethodPost || req.Method == http.MethodHead {
 		rw.Header().Add(HeaderVary, HeaderOrigin)
 		rw.Header().Set(HeaderAccessControlAllowOrigin, allowedOrigin)
-		if h.c.AllowCredentials {
+		if h.c.AllowCredentials && allowedOrigin != "*" && allowedOrigin != "" {
 			rw.Header().Set(HeaderAccessControlAllowCredentials, "true")
 		}
 		if h.exposeHeaders != "" {
@@ -64,7 +60,7 @@ func (h *CorsHandler) handle(c context.Context, rw http.ResponseWriter, req *htt
 	rw.Header().Add(HeaderVary, HeaderAccessControlRequestHeaders)
 	rw.Header().Set(HeaderAccessControlAllowOrigin, allowedOrigin)
 	rw.Header().Set(HeaderAccessControlAllowMethods, h.allowMethods)
-	if h.c.AllowCredentials {
+	if h.c.AllowCredentials && allowedOrigin != "*" && allowedOrigin != "" {
 		rw.Header().Set(HeaderAccessControlAllowCredentials, "true")
 	}
 	if h.allowHeaders != "" {
