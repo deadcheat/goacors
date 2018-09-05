@@ -20,3 +20,29 @@ a cors-header middleware for goa(https://github.com/goadesign/goa)
 		AllowMethods: []string{goacors.GET},
 	}))
 		```
+
+# Intermediate Match Mode
+
+Intermediate Match Mode is using match logic allow wildcard in host, like `*.example.com`.
+
+```
+NOTIFY
+
+Note that using wild card is not correct for specification of CORS.
+And this mode is not recommended for production use.
+I implemented this for only testing.
+```
+
+## how to use Intermediate Match Mode
+To use this mode, you can use goacors.WithConfig like below,
+
+```
+service.Use(goacors.WithConfig(service, &goacors.GoaCORSConfig{
+	AllowOrigins:     []string{"http://example.com"},
+	AllowMethods:     []string{goacors.GET},
+	DomainStrategy:   goacors.AllowIntermediateMatch,
+}))
+```
+
+`DomainStrategy` option is added for this. default is `goacors.AllowStrict` and you need to change this to `goacors.AllowIntermediateMatch`
+
