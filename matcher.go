@@ -69,35 +69,33 @@ func newInterMediateMatcher(config *GoaCORSConfig) OriginMatcher {
 // second, wild card is enabled only in their host name
 func (i *InterMediateMatcher) FindMatchedOrigin(allowedOrigins []string, origin string) (foundOne string, found bool) {
 
+	originUrl, err := url.Parse(origin)
+	if err != nil {
+		return "", false
+	}
+
 	for _, o := range allowedOrigins {
 		if foundOne, found = i.baseMatcher(o, origin, i.config.AllowCredentials); found {
 			return
 		}
 
-		originUrl, err := url.Parse(origin)
-		if err != nil {
-			return "", false
-		}
-		allowedUrl, err := url.Parse(o)
+		allowedURL, err := url.Parse(o)
 		if err != nil {
 			panic(err)
 		}
-		if !strings.Contains(allowedUrl.Host, "*") {
-			return "", false
+		if !strings.Contains(allowedURL.Host, "*") {
+			continue
 		}
-
-		parts := strings.SplitN(allowedUrl.Host, "*", 2)
-		if !strings.HasPrefix(originUrl.Host, parts[0]) {
-			return "", false
+		parts := strings.SplitN(allowedURL.Host, "*", 2)
+		if !strings.HasPrefix(originUrl.Host, parts[0]) ||
+			!strings.HasSuffix(origin, parts[1]) ||
+			originUrl.Scheme != allowedURL.Scheme ||
+			originUrl.Path != allowedURL.Path ||
+			originUrl.RawQuery != allowedURL.RawQuery {
+			continue
 		}
-		if !strings.HasSuffix(origin, parts[1]) {
-			return "", false
-		}
-
-		if originUrl.Scheme != allowedUrl.Scheme || originUrl.Path != allowedUrl.Path || originUrl.RawQuery != allowedUrl.RawQuery {
-			return "", false
-		}
+		// return origin, true
+		return origin, true
 	}
-
-	return origin, true
+	return
 }

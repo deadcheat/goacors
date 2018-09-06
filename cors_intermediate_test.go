@@ -282,7 +282,7 @@ func TestOriginNotAllowsSubDomainSuccessWithMultipleAllowOrigin(t *testing.T) {
 		t.Fail()
 	}
 	if rw.Header().Get(goacors.HeaderAccessControlAllowOrigin) != req.Header.Get(goacors.HeaderOrigin) {
-		t.Errorf("allow origin should be %s but %s", req.Header.Get(goacors.HeaderOrigin), rw.Header().Get(goacors.HeaderAccessControlAllowOrigin))
+		t.Errorf("allow origin should be %s but [%s]", req.Header.Get(goacors.HeaderOrigin), rw.Header().Get(goacors.HeaderAccessControlAllowOrigin))
 		t.Fail()
 	}
 }
