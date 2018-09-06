@@ -257,3 +257,32 @@ func TestOriginNotAllowsSubDomainWildcardFailWithInvalidAllowOriginURL(t *testin
 
 	t.Error("test should be panic")
 }
+
+func TestOriginNotAllowsSubDomainSuccessWithMultipleAllowOrigin(t *testing.T) {
+	service := newService(nil)
+	req, _ := http.NewRequest(http.MethodGet, "/", nil)
+	req.Header.Set(goacors.HeaderOrigin, "http://sample02.domain.com")
+	rw := newTestResponseWriter()
+	ctx := newContext(service, rw, req, nil)
+
+	h := func(ctx context.Context, rw http.ResponseWriter, req *http.Request) error {
+		return service.Send(ctx, http.StatusOK, "ok")
+	}
+	testee := goacors.WithConfig(service, &goacors.GoaCORSConfig{
+		AllowOrigins: []string{
+			"http://sample01*.domain.com",
+			"http://sample02*.domain.com",
+		},
+		AllowCredentials: true,
+		DomainStrategy:   goacors.AllowIntermediateMatch,
+	})(h)
+	err := testee(ctx, rw, req)
+	if err != nil {
+		t.Error("it should not return any error but ", err)
+		t.Fail()
+	}
+	if rw.Header().Get(goacors.HeaderAccessControlAllowOrigin) != req.Header.Get(goacors.HeaderOrigin) {
+		t.Errorf("allow origin should be %s but %s", req.Header.Get(goacors.HeaderOrigin), rw.Header().Get(goacors.HeaderAccessControlAllowOrigin))
+		t.Fail()
+	}
+}
