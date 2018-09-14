@@ -2,6 +2,7 @@ package goacors
 
 import (
 	"context"
+	"fmt"
 	"net/url"
 	"strings"
 
@@ -25,6 +26,7 @@ func newStrictOriginMatcher(config *GoaCORSConfig) OriginMatcher {
 
 // Filter check if allowedOrigins contain * or completely same origin
 func (s *StrictOriginMatcher) FindMatchedOrigin(allowedOrigins []string, origin string) (foundOne string, found bool) {
+	fmt.Println("fuga", allowedOrigins, origin)
 	for _, o := range allowedOrigins {
 		if foundOne, found = innerMatcher(o, origin, s.config.AllowCredentials); found {
 			return
@@ -50,8 +52,6 @@ type InterMediateMatcher struct {
 	baseMatcher
 	config *GoaCORSConfig
 }
-
-type MatcherBuilder func(config *GoaCORSConfig) OriginMatcher
 
 // newInterMediateMatcher create new OriginMatcher implement
 func newInterMediateMatcher(config *GoaCORSConfig) OriginMatcher {
