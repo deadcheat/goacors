@@ -54,7 +54,7 @@ func WithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
 			allowedOrigin, _ := om.FindMatchedOrigin(conf.AllowOrigins, origin)
 
 			// Simple request
-			if req.Method == http.MethodGet || req.Method == http.MethodPost || req.Method == http.MethodHead {
+			if req.Method != http.MethodOptions {
 				rw.Header().Add(HeaderVary, HeaderOrigin)
 				rw.Header().Set(HeaderAccessControlAllowOrigin, allowedOrigin)
 				if conf.AllowCredentials && allowedOrigin != "*" && allowedOrigin != "" {
