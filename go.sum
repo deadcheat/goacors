@@ -1,0 +1,12 @@
+github.com/armon/go-metrics v0.0.0-20180221182744-783273d70314 h1:jpSQNQxHcJYxs/ZpBX2p05wPGmF9BKQQKdyg2cCzWeA=
+github.com/armon/go-metrics v0.0.0-20180221182744-783273d70314/go.mod h1:Q73ZrmVTwzkszR9V5SSuryQ31EELlFMUz1kKyl939pY=
+github.com/dimfeld/httptreemux v5.0.1+incompatible h1:Qj3gVcDNoOthBAqftuD596rm4wg/adLLz5xh5CmpiCA=
+github.com/dimfeld/httptreemux v5.0.1+incompatible/go.mod h1:rbUlSV+CCpv/SuqUTP/8Bk2O3LyUV436/yaRGkhP6Z0=
+github.com/goadesign/goa v1.3.1 h1:J7gZm0xlJhdQEZ4LWOJUvrwBHM2PA+6ZvMkUq0j0Zms=
+github.com/goadesign/goa v1.3.1/go.mod h1:d/9lpuZBK7HFi/7O0oXfwvdoIl+nx2bwKqctZe/lQao=
+github.com/hashicorp/go-immutable-radix v0.0.0-20180129170900-7f3cd4390caa h1:0nA8i+6Rwqaq9xlpmVxxTwk6rxiEhX+E6Wh4vPNHiS8=
+github.com/hashicorp/go-immutable-radix v0.0.0-20180129170900-7f3cd4390caa/go.mod h1:6ij3Z20p+OhOkCSrA0gImAWoHYQRGbnlcuk6XYTiaRw=
+github.com/hashicorp/golang-lru v0.0.0-20180201235237-0fb14efe8c47 h1:UnszMmmmm5vLwWzDjTFVIkfhvWF1NdrmChl8L2NUDCw=
+github.com/hashicorp/golang-lru v0.0.0-20180201235237-0fb14efe8c47/go.mod h1:/m3WP610KZHVQ1SGc6re/UDhFvYD7pJ4Ao+sR/qLZy8=
+github.com/satori/go.uuid v0.0.0-20180103174451-36e9d2ebbde5 h1:tfcGHuraNSEY9xRb9ckCMqMD7xAjzrYI1WpD7DA+nz8=
+github.com/satori/go.uuid v0.0.0-20180103174451-36e9d2ebbde5/go.mod h1:dA0hQrYB0VpLJoorglMZABFdXlWrHn1NEOzdhQKdks0=
