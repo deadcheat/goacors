@@ -86,7 +86,8 @@ func WithConfig(service *goa.Service, conf *GoaCORSConfig) goa.Middleware {
 			if conf.MaxAge > 0 {
 				rw.Header().Set(HeaderAccessControlMaxAge, maxAge)
 			}
-			return service.Send(c, http.StatusNoContent, http.StatusText(http.StatusNoContent))
+			rw.WriteHeader(http.StatusNoContent)
+			return nil
 		}
 	}
 

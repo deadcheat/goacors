@@ -220,6 +220,14 @@ func TestPreflightRequet(t *testing.T) {
 		t.Error("access control allow headers should be 'X-OriginalRequest' but ", rw.Header().Get(goacors.HeaderAccessControlAllowHeaders))
 		t.Fail()
 	}
+
+	// StatusNoContent does not allow body
+	if rw.Status != http.StatusNoContent {
+		t.Errorf("the status should be %d, got %d", http.StatusNoContent, rw.Status)
+	}
+	if len(rw.Body) != 0 {
+		t.Errorf("the length of the body should be 0, got %d", len(rw.Body))
+	}
 }
 
 func TestNotGivenAllowHeaderOnRequest(t *testing.T) {
@@ -324,5 +332,14 @@ func TestAddedAllowOrigHeader(t *testing.T) {
 	if rw.Header().Get(goacors.HeaderAccessControlAllowHeaders) != "X-OrigHeader" {
 		t.Error("allow origin should be empty")
 		t.Fail()
+	}
+
+	// StatusNoContent does not allow body
+	if rw.Status != http.StatusNoContent {
+		t.Errorf("the status should be %d, got %d", http.StatusNoContent, rw.Status)
+	}
+	if len(rw.Body) != 0 {
+		t.Errorf("the length of the body should be 0, got %d", len(rw.Body))
+		t.Log(string(rw.Body))
 	}
 }
