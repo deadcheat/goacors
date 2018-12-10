@@ -1,3 +1,6 @@
+# IMPORTANT - THIS REPO IS DEPRECATED.
+This repo's all responsibilities were migrated to [github.com/istyle-inc/goacors](https://github.com/istyle-inc/goacors).
+
 [![Build Status](https://travis-ci.org/deadcheat/goacors.svg?branch=master)](https://travis-ci.org/deadcheat/goacors)
 [![Coverage Status](https://coveralls.io/repos/github/deadcheat/goacors/badge.svg?branch=master&service=github)](https://coveralls.io/github/deadcheat/goacors?branch=master) [![GoDoc](https://godoc.org/github.com/deadcheat/goacors?status.svg)](https://godoc.org/github.com/deadcheat/goacors)  
 
@@ -19,7 +22,7 @@ a cors-header middleware for goa(https://github.com/goadesign/goa)
 		AllowOrigins: []string{"http://example.com"},
 		AllowMethods: []string{goacors.GET},
 	}))
-		```
+	```
 
 # Intermediate Match Mode
 
